@@ -13,7 +13,5 @@ Then continue with the following:
 ```shell
 npm install
 bower install
-gulp build
 gulp serve
-cd my-proj
 ```
