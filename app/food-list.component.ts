@@ -9,18 +9,12 @@ import { FoodItem } from './fooditem.model';
     <option value="high">Show High-calorie Food</option>
     <option value="low">Show Low-calorie Food</option>
     </select>
-    <div *ngFor="let currentFood of childFoodList"  >
+    <div *ngFor="let currentFood of childFoodList | foodcategory : selectedFoodCategory">
        <food-display [food]="currentFood"></food-display>
-
+       <button (click)="editButtonHasBeenClicked(currentFood)">Edit</button>
+       <button (click)="deleteButtonClicked (currentFood)">Delete</button>
     </div>
 
-    <!-- temp off
-    <div *ngFor="let currentTask of childTaskList | completeness:selectedFoodCategory"  >
-       <task-display [task]="currentTask"></task-display>
-       <button (click)="editButtonHasBeenClicked(currentTask)">Edit</button>
-       <button (click)="deleteButtonClicked (currentTask)">Delete</button>
-    </div>
-    -->
 
        `
 })
@@ -28,25 +22,18 @@ import { FoodItem } from './fooditem.model';
 export class FoodListComponent {
 
     @Input() childFoodList: FoodItem[];
-/*
     @Output() clickSender = new EventEmitter();
     @Output() deleteSender = new EventEmitter();
-    */
 
     public selectedFoodCategory: string = "all";
 
-/*
-    editButtonHasBeenClicked(taskToEdit: Task) {
-        this.clickSender.emit(taskToEdit);
-    }
-    deleteButtonClicked(taskTodelete: Task) {
-        this.deleteSender.emit(taskTodelete);
-    }
-    */
-    onChange(optionFromFood) {
-        console.log (this.selectedFoodCategory);
-        console.log (optionFromFood);
-        this.selectedFoodCategory = optionFromFood;
-        console.log (this.selectedFoodCategory);
-    }
+editButtonHasBeenClicked(foodToEdit: FoodItem) {
+    this.clickSender.emit(foodToEdit);
+}
+deleteButtonClicked(foodTodelete: FoodItem) {
+    this.deleteSender.emit(foodTodelete);
+}
+onChange(optionFromFood) {
+    this.selectedFoodCategory = optionFromFood;
+}
 }
