@@ -5,8 +5,10 @@ import { FoodItem } from './fooditem.model';
     selector: 'my-app',
     template: `
     <div class="container">
-    <h1>calorie-tracking-app</h1>
-
+    <h1>Calorie-Tracking-App</h1>
+    <food-list
+      [childFoodList]="masterFoodList"
+    ></food-list>
 <!-- from taskList
     <task-list
       [childTaskList]="masterTaskList"
@@ -27,11 +29,11 @@ import { FoodItem } from './fooditem.model';
 
 export class AppComponent {
 
-/*
      public masterFoodList: FoodItem [] = [
        new FoodItem ("Hamburger", "Didn't get a soda or cheese on my burger!", 354),
+       new FoodItem ("Fries", "I only ate half of them", 365),
      ];
-*/
+
     /*
         public masterTaskList: Task[] = [
           new Task ("Create to-Do List App.",0),
